@@ -19,7 +19,7 @@ export default function DayLightSwitch() {
 	return (
 		<button
 			className="p-2 rounded-sm  cursor-pointer  transition-all duration-300 ease-in-out 
-              bg-white text-[#121212] dark:bg-[#232323] dark:text-[#a4a4a6]
+              bg-white text-[#121212] dark:bg-[#232323] dark:border border-gray-300 dark:text-[#a4a4a6]
               dark:hover:bg-[#232323] hover:bg-gray-200"
 			onClick={() => setTheme(currentTheme === 'dark' ? 'light' : 'dark')}
 		>
