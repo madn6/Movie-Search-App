@@ -2,11 +2,31 @@
 
 body {
 	user-select: none;
-  background-color: var(--color-dark-100);
-  color: var(--color-gray-100);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 	min-height: 100vh;
 	font-family: Inter Display;
 }
+
+:root {
+  --bg-color: #ffffff;
+  --text-color: #121212;
+}
+
+/* Light mode (default) */
+html {
+  background-color: #121212; /* Ensures background is dark by default */
+  color: #a4a4a6;
+}
+
+/* Dark mode */
+.dark {
+  --bg-color: #121212;
+  --text-color: #a4a4a6;
+}
+
+
 
 @theme {
 
@@ -29,6 +49,7 @@ body {
 	--font-semibold: 600;
 	--font-bold: 700;
 }
+
 
 .font-thin {
   font-weight: var(--font-thin);
