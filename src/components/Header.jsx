@@ -14,7 +14,7 @@ export default function Header() {
 				<MenuItems title="home" address="/" Icon={AiFillHome} />
 				<MenuItems title="About" address="/about" Icon={BsFillInfoCircleFill} />
 			</div>
-			<h1 className="lg:text-3xl md:text-2xl md:inline hidden  font-semibold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+			<h1 className="lg:text-3xl md:text-2xl md:inline hidden  font-semibold text-light-100">
 				Discover, Explore, and Enjoy!
 			</h1>
 			<Link href={'/'} className="flex gap-1 items-end ">
