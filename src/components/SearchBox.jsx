@@ -46,7 +46,7 @@ export default function SearchBox() {
 					value={search}
 					onChange={(e) => setSearch(e.target.value)}
 					type="text"
-					placeholder="Search Keywords..."
+					placeholder="Search Any Movie..."
 					className="px-4 focus:outline-none text-light-100 py-2 border border-gray-300 bg-gray-200 rounded-md w-full sm:w-auto"
 					aria-describedby="search-input-description"
 				/>
