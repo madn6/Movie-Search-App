@@ -1,31 +1,50 @@
-'use client'; // Ensure this runs on the client side
+'use client';
 
 import Results from '@/components/Results';
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 
-export default function HomePage({ searchParams }) {
-	const [results, setResults] = useState([]);
+export default function HomePage() {
+	const [movies, setMovies] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 
-	const genre = searchParams?.genre || 'fetchTrending';
-	const API_KEY = process.env.NEXT_PUBLIC_API_KEY; // Use NEXT_PUBLIC for frontend access
+	const searchParams = useSearchParams();
+	const genre = searchParams.get('genre'); // Get the genre from URL params
+	const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
 	useEffect(() => {
 		async function fetchData() {
 			try {
-				const url = `https://api.themoviedb.org/3${
-					genre === 'fetchTopRated' ? '/movie/top_rated' : '/trending/all/week'
-				}?api_key=${API_KEY}&language=en-US&page=1`;
-				console.log('Fetching URL:', url);
+				setLoading(true);
+				let urls = [];
 
-				const res = await fetch(url, { next: { revalidate: 10000 } });
-				if (!res.ok) {
-					throw new Error('Failed to fetch data');
+				if (genre === 'fetchTopRated') {
+					// Only fetch top-rated movies
+					urls = [
+						`https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`
+					];
+				} else if (genre === 'fetchTrending') {
+					// Only fetch trending movies
+					urls = [
+						`https://api.themoviedb.org/3/trending/all/week?api_key=${API_KEY}&language=en-US&page=1`
+					];
+				} else {
+					// Default: Fetch both trending and top-rated
+					urls = [
+						`https://api.themoviedb.org/3/trending/all/week?api_key=${API_KEY}&language=en-US&page=1`,
+						`https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`
+					];
 				}
 
-				const data = await res.json();
-				setResults(data.results);
+				// Fetch all required URLs
+				const responses = await Promise.all(urls.map((url) => fetch(url)));
+				const data = await Promise.all(responses.map((res) => res.json()));
+
+				// Combine results when on the homepage
+				const combinedMovies = genre ? data[0].results : [...data[0].results, ...data[1].results];
+
+				setMovies(combinedMovies);
 			} catch (err) {
 				console.error('Error fetching data:', err);
 				setError(err.message);
@@ -39,8 +58,14 @@ export default function HomePage({ searchParams }) {
 
 	return (
 		<div>
-			<h1>HomePage</h1>
-			<Results results={results} loading={loading} error={error} />
+			<h1 className="text-2xl font-bold text-center mt-5">
+				{genre === 'fetchTopRated'
+					? 'Top Rated Movies'
+					: genre === 'fetchTrending'
+					? 'Trending Movies'
+					: 'All Movies'}
+			</h1>
+			<Results results={movies} loading={loading} error={error} />
 		</div>
 	);
 }
