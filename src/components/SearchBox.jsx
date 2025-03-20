@@ -54,7 +54,7 @@ export default function SearchBox() {
 					disabled={search === ''}
 					type="submit"
 					className={`px-6 py-2 text-gray-100 bg-gray-200 border border-gray-300 rounded-md cursor-pointer hover:bg-gray-300 transition-colors 
-            ${search === '' ? 'cursor-not-allowed opacity-50' : 'bg-gray-300'}`}
+            ${search === '' ? 'cursor-not-allowed opacity-50 ' : 'bg-gray-200'}`}
 					aria-label="Search"
 				>
 					Search

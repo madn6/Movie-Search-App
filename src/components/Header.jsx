@@ -5,6 +5,7 @@ import MenuItems from './MenuItems';
 import { AiFillHome } from 'react-icons/ai';
 import { BsFillInfoCircleFill } from 'react-icons/bs';
 import DayLightSwitch from './DayLightSwitch';
+import Image from 'next/image';
 
 export default function Header() {
 	return (
@@ -23,7 +24,7 @@ export default function Header() {
 			</h1>
 
 			<Link href={'/'} className="flex gap-1 items-end ">
-				<img src="fevicon2.webp" alt="fevicon" width={28} />
+				<Image src="/fevicon2.webp" alt="fevicon" width={28} height={28}/>
 				<span className="font-thin text-xl leading-none">Search</span>
 			</Link>
 		</div>
