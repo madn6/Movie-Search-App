@@ -58,11 +58,14 @@ export default function HomePage() {
 
 	return (
 		<div>
-			<h1 className="text-2xl font-bold text-center mt-5">
+			<h1
+				className="text-center mt-5 
+        text-xl md:text-2xl lg:text-3xl font-semibold"
+			>
 				{genre === 'fetchTopRated'
 					? 'Top Rated Movies'
 					: genre === 'fetchTrending'
-					? 'Trending Movies'
+					? 'Trending Movies Now...'
 					: 'All Movies'}
 			</h1>
 			<Results results={movies} loading={loading} error={error} />

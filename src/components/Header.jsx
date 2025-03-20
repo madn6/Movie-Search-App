@@ -14,9 +14,14 @@ export default function Header() {
 				<MenuItems title="home" address="/" Icon={AiFillHome} />
 				<MenuItems title="About" address="/about" Icon={BsFillInfoCircleFill} />
 			</div>
-			<h1 className="lg:text-3xl md:text-2xl md:inline hidden  font-semibold text-light-100">
+			<h1
+				className="hidden md:block lg:text-3xl md:text-2xl font-semibold 
+  bg-gradient-to-r from-gray-700 via-gray-500 to-gray-300 
+  text-transparent bg-clip-text dark:from-gray-300 dark:via-gray-400 dark:to-gray-500"
+			>
 				Discover, Explore, and Enjoy!
 			</h1>
+
 			<Link href={'/'} className="flex gap-1 items-end ">
 				<img src="fevicon2.webp" alt="fevicon" width={28} />
 				<span className="font-thin text-xl leading-none">Search</span>
