@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter } from "next/navigation";
 import Results from "@/components/Results";
 
@@ -47,11 +47,14 @@ export default function SearchPage({ params }) {
 
 	return (
 		<div>
+			<Suspense>
+
 			{results.length === 0 ? (
 				<h1 className="text-center mt-6">No Results Found</h1>
 			) : (
 				<Results results={results} />
 			)}
+			</Suspense>
 		</div>
 	);
 }

@@ -1,34 +1,30 @@
-import { Geist, Geist_Mono } from 'next/font/google';
-import './globals.css';
-import Header from '@/components/Header';
-import Providers from './Providers';
-import Navbar from '@/components/Navbar';
-import SearchBox from '@/components/SearchBox';
-
-const geistSans = Geist({
-	variable: '--font-geist-sans',
-	subsets: ['latin']
-});
-
-const geistMono = Geist_Mono({
-	variable: '--font-geist-mono',
-	subsets: ['latin']
-});
+import { Suspense } from "react";
+import "./globals.css";
+import Header from "@/components/Header";
+import Providers from "./Providers";
+import Navbar from "@/components/Navbar";  
+import SearchBox from "@/components/SearchBox";  
 
 export const metadata = {
-	title: 'Movie Search app',
-	description: 'discover, search and Explore'
+	title: "Movie Search App",
+	description: "Discover, search, and explore movies."
 };
 
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
-			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+			<body>
 				<Providers>
 					<Header />
-					<Navbar />
-					<SearchBox />
-					{children}
+					<Suspense fallback={<div>Loading Navbar...</div>}>
+						<Navbar />
+					</Suspense>
+					<Suspense fallback={<div>Loading SearchBox...</div>}>
+						<SearchBox />
+					</Suspense>
+					<Suspense fallback={<div>Loading Page...</div>}>
+						{children}
+					</Suspense>
 				</Providers>
 			</body>
 		</html>
