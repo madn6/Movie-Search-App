@@ -59,7 +59,7 @@ export default function HomePage() {
 	return (
 		<div>
 			<h1
-				className="text-center mt-5 
+				className="text-center mt-2 
         text-xl md:text-2xl lg:text-3xl font-semibold"
 			>
 				{genre === 'fetchTopRated'
