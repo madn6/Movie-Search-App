@@ -77,7 +77,7 @@ export default function MovieDetails() {
 					</div>
 
 					{/* Language */}
-					<p className="flex items-center gap-1 text-sm text-lime-100">
+					<p className="flex items-center gap-1 text-sm text-light-100">
 						<FaGlobe className="text-blue-400" />
 						{movieDetail.original_language.toUpperCase()}
 					</p>
@@ -86,13 +86,13 @@ export default function MovieDetails() {
 				{/* Rating and Popularity */}
 				<div className="flex items-center gap-4 mt-2">
 					{/* Rating */}
-					<p className="flex items-center gap-1 text-sm text-lime-100">
+					<p className="flex items-center gap-1 text-sm text-light-100">
 						<FaStar className="text-yellow-600" />
 						{movieDetail.vote_average}
 					</p>
 
 					{/* Popularity */}
-					<p className="flex items-center gap-1 text-sm text-lime-100">
+					<p className="flex items-center gap-1 text-sm text-light-100">
 						<FaChartBar className="text-cyan-700" />
 						{movieDetail.popularity}
 					</p>
